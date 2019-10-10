@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Pacific Hotel">
+    <meta name="keywords" content="Pacific, Hotel, Residence, Property, Reservation">
+    <meta name="author" content="Dariusz Staryk">
+    <title>Pacific Hotel</title>
+    
+    <link rel="shortcut icon" href="img/Hotel-logo.jpg">
+    
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">  <!-- font-family: 'Roboto', sans-serif; -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i&display=swap" rel="stylesheet">  <!-- font-family: 'Noto Serif', serif; -->
+    <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">   <!-- font-family: 'Courgette', cursive; -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <style>
+    
+    body {box-sizing: border-box; margin: 0px; font-family: 'Roboto', sans-serif; line-height: unset;}
+    p {margin-bottom: unset;}
+
+    /* Copyright informations of images */
+
+    .image_source {position: absolute; bottom: 14px; right: 14px; background-color: #ffffff60; height: fit-content; padding: 4px 6px; border: 1px solid white;}
+    .image_source, .image_source a {font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.4px; font-weight: bold; border-radius: 3px; color: white; text-decoration: none; z-index:100;}
+    .image_source:hover {background-color: rgba(0, 0, 0, 0.5); color: white; cursor: pointer;}
+    .image_source:hover, .image_source:hover a {color: white;} 
+    .image_source a:hover {text-decoration: underline;}
+
+    .Welcome_to_Atlantis .image_source {position: absolute; bottom: 30px; left: 40px; width: fit-content; background-color:#c9c8c8 !important; color:white !important;}
+    .Welcome_to_Atlantis .image_source:hover {background-color:#979696 !important}
+    .Welcome_to_Atlantis .image_source, .Welcome_to_Atlantis .image_source a {color:white;}
+
+    .Our_Gallery_Inside_Bottom .image_source {bottom: 31px; right: 32px;}
+
+    .image_source_unsplash {bottom: 21px; right: 22px; height: fit-content; padding: 2px 4px !important; font-size: 11px !important; letter-spacing: 0.4px !important; position: absolute; background-color:#ffffff38 !important; color:rgba(255, 255, 255, 0.6) !important;}
+    .Our_Gallery_Inside_Bottom .image_source_unsplash {bottom: 31px; right: 32px;}
+    
+    .image_source_unsplash svg {fill:rgba(255, 255, 255, 0.6) !important;}
+    .image_source_unsplash:hover {background-color: rgba(0, 0, 0, 0.5) !important; color: white !important;}
+    .image_source_unsplash:hover svg {color: white !important; fill: white !important;}
+    
+    .Our_Agents .image_source, .Our_Agents .image_source, .Our_Agents .image_source_unsplash {bottom: 10px; right: 10px;}
+    .Our_Contacts .image_source {bottom: 10px; right: 10px;}
+
+    /* Header */
+
+    .Header {back6ground-color:#e2e2e2; width: 100%; border-bottom: 1px #cacaca solid; display: flex; justify-content: space-between; align-items: center;}
+    .Header_Left {backg5round-color:#ffb7b7; display: flex; justify-content: center; align-items: center;}
+    
+    .Nav_button {border-right: 1px #cacaca solid; height: 68px; color: #0a1d3b; display: flex; justify-content: center; align-items: center;
+                 font-size: 17px; text-transform: uppercase; padding: 0px 30px; position: relative; transition: 0.2s; m5ax-width: 450px; wi5dth: 100%;}
+    .Nav_button:hover {background-color:#0a1d3b; color: white; cursor: pointer;}
+    .Nav_button:first-child {background-color:#0a1d3b; color: white; font-family: 'Courgette', cursive; font-size: 42px; text-transform: capitalize; padding: 0px 14px;}
+    .Nav_button:first-child:hover {background-color: white; color: #0a1d3b;}
+    .Nav_button:first-child i {font-size: 42px; margin-right: 14px;}
+    
+    .Header_Right {background-color:#0a1d3b; color: white; max-width: 300px; width: 100%; height: 68px; display: flex; justify-content: center; align-items: center; text-transform: uppercase; border-left: 1px #cacaca solid; transition: 0.2s;}
+    .Header_Right i {margin-left: 24px;}
+    .Header_Right:hover {background-color: white; color: #0a1d3b; cursor: pointer;}
+    .Header_Right:active p {transform: translateX(5px); transition: 0.2s;}
+
+    .Nav_button_submenu {background-color: white; display: none; position: absolute; padding: 0px; top: 68px; left: 0px; width: 200px; z-index: 20; text-align: left;}
+    .Nav_button_submenu_row {text-transform: initial; color: #0a1d3b; border: 1px solid #cacaca; border-bottom: unset; letter-spacing: 0.8px; font-weight: normal; padding: 14px 0px 14px 36px; width: 100%; height: 100%; transition: 0.2s;}
+    .Nav_button_submenu_row:last-child {border-bottom: 1px solid #cacaca;}
+    .Nav_button_submenu_row:hover {background-color: #E9B947; color: white;}
+    .Nav_button:hover .Nav_button_submenu {display: block; cursor: pointer;}
+
+    /* Main_Screen */
+
+    .Main_Screen {position: relative; overflow: hidden;}
+    .Main_Screen_Photo {width: 100%; min-height: 400px; max-height: 700px; height: 60vw; object-fit: cover; overflow: hidden;}
+    .Main_Screen_Photo_img {position: absolute; top: 0px; left: 0px; width: 100%; min-height: 400px; max-height: 700px; object-fit: cover; overflow: hidden;}
+
+        .SlideMoveNext, .SlideMoveNext_TRIAL {transform: translateX(100%);}      .SlideMoveNextREVERSE, .SlideMoveNextREVERSE_TRIAL {transform: translateX(-100%);}
+        .SlideMoveNow {transform: translateX(0%); transition: 4.0s;}
+        .SlideMoveOut {transform: translateX(-100%); transition: 4.0s;}          .SlideMoveOutREVERSE {transform: translateX(100%); transition: 4.0s;}
+
+    .Main_Screen_ArrowsTable {position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; display: flex; justify-content: space-between; align-items: center; overflow: hidden;}
+    
+    .Main_Screen_leftArrowIMG, .Main_Screen_rightArrowIMG {position: relative; width: 74px; height: 74px; font-size: 17px;
+        background-color: transparent; border: 1.4px solid white; color: white; display: flex; justify-content: center; align-items: center; transition: 0.2s;}
+    .Main_Screen_leftArrowIMG {margin-left: 30px; border-left-color: transparent;} 
+    
+    .Main_Screen_rightArrowIMG {margin-right: 30px; border-right-color: transparent;}
+    .Main_Screen_ArrowsTable span {margin-left: 1px; margin-right: 1px;}
+
+    .Main_Screen_leftArrowIMG i {position: absolute; top: 27px; left: -8px; font-size: 16px;}
+    .Main_Screen_rightArrowIMG i {position: absolute; top: 27px; right: -8px; font-size: 16px;}
+        .Main_Screen_leftArrowIMG_top {position: absolute; top: 0px; left: 0px; width: 10px; height: 20px; border-left: 1.4px solid white;}
+        .Main_Screen_leftArrowIMG_bottom {position: absolute; bottom: 0px; left: 0px; width: 10px; height: 20px; border-left: 1.4px solid white;}
+        .Main_Screen_leftArrowIMG:hover span {color: black;}
+        .Main_Screen_leftArrowIMG:hover {background-color: rgba(255, 255, 255, 0.5); cursor: pointer;}
+
+        .Main_Screen_rightArrowIMG_top {position: absolute; top: 0px; right: 0px; width: 10px; height: 20px; border-right: 1.4px solid white;}
+        .Main_Screen_rightArrowIMG_bottom {position: absolute; bottom: 0px; right: 0px; width: 10px; height: 20px; border-right: 1.4px solid white;}
+        .Main_Screen_rightArrowIMG:hover span {color: black;}
+        .Main_Screen_rightArrowIMG:hover {background-color: rgba(255, 255, 255, 0.5); cursor: pointer;}
+        
+    .Main_Screen_leftArrowIMG:active {transform: translateX(-8px);} .Main_Screen_rightArrowIMG:active {transform: translateX(8px);} 
+
+    .Main_Screen_Table_BOTH {width: 100%; max-width: 1200px; display: flex; justify-content: space-around; align-items: flex-start;}
+    .Main_Screen_Table {width: 100%; max-width: 360px; height: fit-content; padding: 26px; margin: 0px 20px; background-color: rgba(26, 26, 26, 0.7);
+                        display: flex; flex-direction: column; justify-content: center; align-items: center;}
+    .Main_Screen_Table p {color: white;}
+
+    .Main_Screen_Table:nth-child(1) {max-width: 480px; min-width: 220px; height: fit-content; align-items: flex-start; justify-content: flex-start; background-color: transparent;}
+
+    .Main_Screen_Table p:nth-child(1), .Main_Screen_Table p:nth-child(2), .Main_Screen_Table p:nth-child(3) 
+        {font-size: 46px; text-transform: capitalize; font-weight: 500; letter-spacing: 0.6px; line-height: 50px; margin-bottom: 0px;}
+    .Main_Screen_Table:nth-child(1) p:nth-child(4) {font-size: 28px; text-transform: capitalize; font-style: italic; font-family: 'Noto Serif', serif; letter-spacing: 0.8px; line-height: 56px; margin-bottom: 30px;}
+
+    .Main_Screen_Table:nth-child(2) p:nth-child(1), .Main_Screen_Table:nth-child(2) p:nth-child(2) {font-size: 32px; text-transform: capitalize; font-weight:100; letter-spacing: 0.6px; line-height: 34px;}
+    .Main_Screen_Table:nth-child(2) p:nth-child(1) span {font-weight: bold;}
+    .Main_Screen_Table:nth-child(2) p:nth-child(2) {margin-bottom: 26px;}
+
+    .Main_Screen_Table:nth-child(2) input {width: 100%; height: 46px; margin-bottom: 10px; padding-left: 14px; font-size: 14px; color:grey;}
+    .Main_Screen_Table:nth-child(2) div {width: 100%; margin-bottom: 60px; display: flex; justify-content: space-between; align-items: center;}
+    .Main_Screen_Table:nth-child(2) div input {width: 48.2%; height: 46px; margin-bottom: 10px; margin: 0px;}
+
+    .Main_Screen_Table p:last-child {font-size: 12px; color: white; font-weight: bold; text-transform: uppercase; letter-spacing: 0.8px; background-color: #fa6839; padding: 14px 26px; border-radius: 30px; width: fit-content; border: 2px solid white; transition: 0.2s;}
+    .Main_Screen_Table p:last-child:hover {background-color: transparent; border: 2px solid #fa6839; color: #fa6839; cursor: pointer;}
+    .Main_Screen_Table p:last-child:active {transform: translateY(5px); transition: 0.2s;}
+
+    .Main_Screen_ProgressBar {background-color: rgba(255, 255, 255, 0.4); position: absolute; top: 0px; left: 0px; width: 100%; height: 8px;}
+    .Main_Screen_ProgressBar_animation {animation: animation_ProgressBar 8.0s linear;}
+    @keyframes animation_ProgressBar {0% {width: 0%} 100% {width: 100%}}
+
+    .Main_Screen_PlayPause {background-color: #f057577c; position: absolute; top: calc(10px + 2.0vw); left: 0px; width: 100%; height: 0px;}
+    .VideoControls {width: auto; height: auto; margin: 0px; padding: 0px; display: flex; justify-content: center; }
+    .VideoControls i {color:white; background-color: #ffffff38; margin: 0px; padding: 0px; border: 1px solid white; font-size: 26px;
+                      width: 44px; height: 44px; display: flex; justify-content: center; align-items: center; border-radius: 5px; transition: 0.2s;}
+    .VideoControls i:hover {background-color:#E9B947; color: #fffffff5; cursor: pointer;}
+    .VideoControls i:active {transform: scale(1.2);}
+
+
+
+
+
+
+    /* Media queries */
+
+    @media screen and (max-width: 1220px) {
+        .Header_Right {display: none;}
+    }
+
+    @media screen and (max-width: 1070px) {
+            /* body {background-color:rgb(197, 231, 245);} */
+            .Main_Screen_Table:nth-child(1) p:nth-child(1), .Main_Screen_Table:nth-child(1) p:nth-child(2), .Main_Screen_Table:nth-child(1) p:nth-child(3) 
+                {font-size: 4.3vw; line-height: 4.6vw; margin-bottom: 0vw;}
+            .Main_Screen_Table:nth-child(1) p:nth-child(4) {font-size: 2.6vw; line-height: 5.4vw; margin-bottom: 2.8vw;}
+            .Main_Screen_Table:nth-child(1) p:last-child {font-size: 1.1vw; padding: 1.4vw 2.4vw;}
+            .Main_Screen_Table:nth-child(1) {width: 44vw; padding: 2.4vw; margin-right: 2.0vw; padding-right: 0px;}
+            .Main_Screen_Table:nth-child(2) {width: 34vw; padding: 2.4vw; margin-left: 2.0vw;}
+            .Main_Screen_Table:nth-child(2) p:nth-child(1), .Main_Screen_Table:nth-child(2) p:nth-child(2)
+                {font-size: 3.0vw; line-height: 3.2vw;}
+            .Main_Screen_Table:nth-child(2) p:nth-child(2) {margin-bottom: 2.4vw;}
+            .Main_Screen_Table:nth-child(2) input {padding-left: 1vw; height: 3.4vw;}
+            .Main_Screen_Table:nth-child(2) div {margin-bottom: 3.6vw; flex-direction: column;}
+            .Main_Screen_Table:nth-child(2) div input {width: 100%; height: 3.4vw;}
+            .Main_Screen_Table:nth-child(2) div input:first-child {margin-bottom: 10px;}
+            .Main_Screen_Table:nth-child(2) p:last-child {font-size: 1.1vw; padding: 1.4vw 2.4vw;}
+            .VideoControls i {width: 4.1vw; height: 4.1vw; font-size: 2.5vw;}
+    }  
+
+    @media screen and (max-width: 940px) {
+       
+    }
+
+    @media screen and (max-width: 840px) {
+            /* body {background-color:rgb(206, 255, 221);} */
+            
+    }
+
+    @media screen and (max-width: 660px) {
+        /* body {background-color:skyblue;} */
+            .Main_Screen_Table:nth-child(1) p:nth-child(1), .Main_Screen_Table:nth-child(1) p:nth-child(2), .Main_Screen_Table:nth-child(1) p:nth-child(3) 
+                {font-size: 28.6px; line-height: 30.8px;}
+            .Main_Screen_Table:nth-child(1) p:nth-child(4) {font-size: 17.6px; line-height: 34px; margin-bottom: 20px;}
+            .Main_Screen_Table:nth-child(1) p:last-child {font-size: 9px; padding: 9px 16px;}
+            .Main_Screen_Table:nth-child(1) {width: 44vw; padding: 2.4vw; margin-right: 2.0vw; padding-right: 0px;}
+
+            .Main_Screen_Table:nth-child(2) {width: 226px; padding: 16px; margin-left: 16px;}
+            .Main_Screen_Table:nth-child(2) p:nth-child(1), .Main_Screen_Table:nth-child(2) p:nth-child(2)
+                {font-size: 20px; line-height: 20.8px;}
+            .Main_Screen_Table:nth-child(2) p:nth-child(2) {margin-bottom: 16px;}
+            .Main_Screen_Table:nth-child(2) input {padding-left: 6px; height: 23px;}
+            .Main_Screen_Table:nth-child(2) div {margin-bottom: 24px;}
+            .Main_Screen_Table:nth-child(2) div input {height: 23px;}
+            .Main_Screen_Table:nth-child(2) p:last-child {font-size: 9px; padding: 9px 16px;}
+
+            .VideoControls i {width: 27.4px; height: 27.4px; font-size: 17px;}
+    } 
+
+    @media screen and (max-width: 628px) {
+    } 
+
+    @media screen and (max-width: 560px) {
+           
+    } 
+
+    body {min-width: 500px;}
+
+    </style>
+</head>
+
+<body>
+
+    <header class="Header">
+        <nav class="Header_Left">
+            <div class="Nav_button" title="Welcome to the Pacific Hotel">
+                <i class="fas fa-h-square"></i>Pacific
+            </div>
+            <div class="Nav_button">Home
+                <div class="Nav_button_submenu">
+                    <div class="Nav_button_submenu_row">Home 1</div>
+                    <div class="Nav_button_submenu_row">Home 2</div>
+                    <div class="Nav_button_submenu_row">Home 3</div>
+                    <div class="Nav_button_submenu_row">Home 4</div>
+                </div>
+            </div>
+            <div class="Nav_button">About us
+                <div class="Nav_button_submenu">
+                    <div class="Nav_button_submenu_row">About us 1</div>
+                    <div class="Nav_button_submenu_row">About us 2</div>
+                    <div class="Nav_button_submenu_row">About us 3</div>
+                </div>
+            </div>
+            <div class="Nav_button">Accomodation
+                <div class="Nav_button_submenu">
+                    <div class="Nav_button_submenu_row">Accomodation 1</div>
+                    <div class="Nav_button_submenu_row">Accomodation 2</div>
+                </div>
+            </div>
+            <div class="Nav_button">Blog
+                <div class="Nav_button_submenu">
+                    <div class="Nav_button_submenu_row">Blog 1</div>
+                    <div class="Nav_button_submenu_row">Blog 2</div>
+                    <div class="Nav_button_submenu_row">Blog 3</div>
+                </div>
+            </div>
+            <div class="Nav_button">Contact us
+                <div class="Nav_button_submenu">
+                    <div class="Nav_button_submenu_row">Blog 1</div>
+                    <div class="Nav_button_submenu_row">Blog 2</div>
+                </div>
+            </div>
+        </nav>
+        <div class="Header_Right" title="Click to book your room">
+            <p>Book your room<i class="fas fa-chevron-right"></i></p> 
+        </div>
+    </header>
+
+    <section class="Main_Screen">
+        <div class="Main_Screen_Photo">
+            <img class="Main_Screen_Photo_img SlideMoveNow" src="img/girl-1287166_1920s.jpg" alt="Photo of a Hotel room">
+            <img class="Main_Screen_Photo_img SlideMoveNext" src="img/hotel-2400364_1920.jpg" alt="Photo of a Hotel room">
+        </div>
+        <div class="Main_Screen_ArrowsTable">
+            <div class="Main_Screen_leftArrowIMG">
+                <div>
+                    <span>P</span>
+                    <span>R</span><br>
+                    <span>E</span>
+                    <span>V</span>
+                </div>
+                <i class="fas fa-arrow-left"></i>
+                <div class="Main_Screen_leftArrowIMG_top"></div>    
+                <div class="Main_Screen_leftArrowIMG_bottom"></div>
+            </div>
+            <!-- <div class="Main_Screen_Table_BOTH">
+                <div class="Main_Screen_Table">
+                    <p id="Main_Screen_Table_p1">267 Surf street</p>
+                    <p id="Main_Screen_Table_p2">Sydney 23987</p>
+                    <p id="Main_Screen_Table_p3">Australia</p>
+                    <p id="Main_Screen_Table_p4">$ 499,000</p>
+                    <p id="Main_Screen_Table_p5" title="More information about the House">More information</p> 
+                </div>
+            </div> -->
+            <div class="Main_Screen_rightArrowIMG">
+                <div>
+                    <span>N</span>
+                    <span>E</span><br>
+                    <span>X</span>
+                    <span>T</span>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+                <div class="Main_Screen_rightArrowIMG_top"></div>    
+                <div class="Main_Screen_rightArrowIMG_bottom"></div>
+            </div>
+        </div>
+        <div class="Main_Screen_ProgressBar Main_Screen_ProgressBar_animation">
+        </div>
+        <div class="Main_Screen_PlayPause">
+            <div class="VideoControls">
+                <i class="fas fa-pause" id="PauseKey" title="Pause the Slides"></i>
+            </div>
+        </div>
+        <div class="image_source"><a href="https://pixabay.com/pl/users/Pexels-2286921/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1836070" target="_blank"> Pexels</a> from <a href="https://pixabay.com/pl/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1836070" target="_blank">Pixabay</a></div>
+    </section>
+
+    <section class="Property_Description">
+       
+    </section>
+
+    <section class="PropertyHighlights">
+       
+    </section>
+
+    <section class="Our_Gallery">
+       
+    </section>
+   
+    <section class="Our_Agents">
+       
+    </section>
+
+    <section class="Testimonials">
+       
+    </section>
+    
+    <section class="Our_Contacts">
+       
+    </section>
+    
+    <footer class="Footer">
+      
+    </footer> 
+
+    <script>
+
+        // Main site animations
+
+        let counter = 1;
+        let counterNext = 2;
+        let ListOfPhotos = [
+            "img/hotelroom-2205447_1920.jpg",
+            "img/girl-1287166_1920s.jpg", 
+            "img/hotel-2400364_1920.jpg",
+            "img/furniture-3189674_1920.jpg"
+        ];
+        let OpacityOUT = "1.6s";
+        let OpacityIN = "1.0s";
+        let OpacityINt = "0.2s";
+        let DelayTIME = 1600;
+        function ChangeAddresses () {
+            let street = ""; let city = ""; let country = ""; let price = "";
+            let title1 = $(".SlideMoveNext").attr("src"); let title2 = $(".SlideMoveNextREVERSE").attr("src");
+            if ((title1 === "img/girl-1287166_1920s.jpg") || (title2 === "img/girl-1287166_1920s.jpg")) {street = "267 Surf Street"; city = "Sydney 23987"; country = "Australia"; price = "$ 499,000"; $(".Main_Screen .image_source").html("<a href='https://pixabay.com/pl/users/Pexels-2286921/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1836070' target='_blank'> Pexels</a> from <a href='https://pixabay.com/pl/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1836070' target='_blank'>Pixabay</a>");}
+            if ((title1 === "img/hotel-2400364_1920.jpg") || (title2 === "img/hotel-2400364_1920.jpg")) {street = "14 Alexis Avenue"; city = "Athens 3211"; country = "Greece"; price = "$ 211,000"; $(".Main_Screen .image_source").html("<a href='https://pixabay.com/pl/users/dimitrisvetsikas1969-1857980/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2877931' target='_blank'> Dimitris Vetsikas</a> from <a href='https://pixabay.com/pl/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2877931' target='_blank'> Pixabay</a>");}
+            if ((title1 === "img/furniture-3189674_1920.jpg") || (title2 === "img/furniture-3189674_1920.jpg")) {street = "345 Rue de Channel"; city = "Paris 9123"; country = "France"; price = "$ 381,000"; $(".Main_Screen .image_source").html("<a href='https://pixabay.com/pl/users/GuentherDillingen-4926783/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3091234' target='_blank'> Günther Schneider</a> from <a href='https://pixabay.com/pl/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3091234' target='_blank'> Pixabay</a>");}
+            if ((title1 === "img/hotelroom-2205447_1920.jpg") || (title2 === "img/hotelroom-2205447_1920.jpg")) {street = "345 Sand Street"; city = "Miami 21345"; country = "USA"; price = "$ 681,000"; $(".Main_Screen .image_source").html("<a href='https://pixabay.com/pl/users/OmarMedinaFilms-818453/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2421427' target='_blank'> Omar Medina Films</a> from <a href='https://pixabay.com/pl/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2421427' target='_blank'> Pixabay</a>");}
+            $("#Main_Screen_Table_p1").css({'opacity': '0', transition: OpacityOUT}).delay(DelayTIME).queue(function() {$(this).text(street).css({'opacity': '1', transition: OpacityIN}).dequeue();});
+            $("#Main_Screen_Table_p2").css({'opacity': '0', transition: OpacityOUT}).delay(DelayTIME).queue(function() {$(this).text(city).css({'opacity': '1', transition: OpacityIN}).dequeue();});
+            $("#Main_Screen_Table_p3").css({'opacity': '0', transition: OpacityOUT}).delay(DelayTIME).queue(function() {$(this).text(country).css({'opacity': '1', transition: OpacityIN}).dequeue();});
+            $("#Main_Screen_Table_p4").css({'opacity': '0', transition: OpacityOUT}).delay(DelayTIME).queue(function() {$(this).text(price).css({'opacity': '1', transition: OpacityIN}).dequeue();});
+            $("#Main_Screen_Table_p5").css({'opacity': '0', transition: OpacityOUT}).delay(DelayTIME).queue(function() {$(this).css({'opacity': '1', transition: OpacityIN}).dequeue();}).delay(1000).queue(function() {$(this).css({transition: "0.2s"}).dequeue();});
+        }
+
+        function Move_Slides() {
+            if ($(".Main_Screen_Photo_img").hasClass("SlideMoveOut") || $(".Main_Screen_Photo_img").hasClass("SlideMoveOutREVERSE")) {return;} else {
+                if (FirstTime === 1) {clearTimeout(repeat); MoveSlidesFunction();}
+                if ($(".SlideMoveNextREVERSE").hasClass("SlideMoveNextREVERSE")) {
+                    $(".SlideMoveNextREVERSE").removeClass("SlideMoveNextREVERSE").addClass("SlideMoveNext");
+                    counterNext++; if (counterNext === ListOfPhotos.length) {counterNext = 0;};
+                    counterNext++; if (counterNext === ListOfPhotos.length) {counterNext = 0;};
+                    $(".SlideMoveNext").attr("src", ListOfPhotos[counterNext]);};
+                ChangeAddresses ();
+                $(".Main_Screen_ProgressBar").css({"width": "0%"}).removeClass("Main_Screen_ProgressBar_animation").css({"animation": ""});
+                $(".SlideMoveNext").removeClass("SlideMoveNext").addClass("SlideMoveNext_TRIAL");
+                    let funny_variable = $(".SlideMoveNext_TRIAL").css("transform");           // sztuczna instrukcja, żeby program zapamiętał tę wartość "transform", zanim zniknie
+                $(".SlideMoveNow").removeClass("SlideMoveNow").addClass("SlideMoveOut").delay(4000).queue(function() {
+                        $(".Main_Screen_ProgressBar").css({"width": "100%"}).css({"animation": "animation_ProgressBar 4.0s linear"});   
+                        $(this).removeClass("SlideMoveOut").addClass("SlideMoveNext");
+                            $(".Main_Screen_leftArrowIMG_img").attr("src", ListOfPhotos[counter]);
+                            counter++;                      if (counter === ListOfPhotos.length) {counter = 0;}
+                            counterNext = counter + 1;      if (counterNext === ListOfPhotos.length) {counterNext = 0;}
+                            $(".SlideMoveNext").attr("src", ListOfPhotos[counterNext]);
+                            $(".Main_Screen_rightArrowIMG_img").attr("src", ListOfPhotos[counterNext]);
+                        $(this).dequeue();});
+                $(".SlideMoveNext_TRIAL").removeClass("SlideMoveNext_TRIAL").addClass("SlideMoveNow");
+            }
+        }
+        $(".Main_Screen_rightArrowIMG").click(function() {Move_Slides();});
+        
+        $(".Main_Screen_leftArrowIMG").click(function() {
+            if ($(".Main_Screen_Photo_img").hasClass("SlideMoveOut") || $(".Main_Screen_Photo_img").hasClass("SlideMoveOutREVERSE")) {return;} else {
+                if (FirstTime === 1) {clearTimeout(repeat); MoveSlidesFunction();}
+                if ($(".SlideMoveNext").hasClass("SlideMoveNext")) {
+                    $(".SlideMoveNext").removeClass("SlideMoveNext").addClass("SlideMoveNextREVERSE");
+                    counterNext--; if (counterNext === -1) {counterNext = ListOfPhotos.length - 1;};
+                    counterNext--; if (counterNext === -1) {counterNext = ListOfPhotos.length - 1;};
+                    $(".SlideMoveNextREVERSE").attr("src", ListOfPhotos[counterNext]);};
+                ChangeAddresses ();
+                $(".Main_Screen_ProgressBar").css({"width": "0%"}).removeClass("Main_Screen_ProgressBar_animation").css({"animation": ""});
+                $(".SlideMoveNextREVERSE").removeClass("SlideMoveNextREVERSE").addClass("SlideMoveNextREVERSE_TRIAL");
+                    let funny_variable = $(".SlideMoveNextREVERSE_TRIAL").css("transform");           // sztuczna instrukcja, żeby program zapamiętał tę wartość "transform", zanim zniknie
+                $(".SlideMoveNow").removeClass("SlideMoveNow").addClass("SlideMoveOutREVERSE").delay(4000).queue(function() {
+                        $(".Main_Screen_ProgressBar").css({"width": "100%"}).css({"animation": "animation_ProgressBar 4.0s linear"});
+                        $(this).removeClass("SlideMoveOutREVERSE").addClass("SlideMoveNextREVERSE");
+                            $(".Main_Screen_rightArrowIMG_img").attr("src", ListOfPhotos[counter]);
+                            counter--;                      if (counter === -1) {counter = ListOfPhotos.length - 1;}
+                            counterNext = counter - 1;      if (counterNext === -1) {counterNext = ListOfPhotos.length - 1;}
+                            $(".SlideMoveNextREVERSE").attr("src", ListOfPhotos[counterNext]);
+                            $(".Main_Screen_leftArrowIMG_img").attr("src", ListOfPhotos[counterNext]);
+                        $(this).dequeue();});
+                $(".SlideMoveNextREVERSE_TRIAL").removeClass("SlideMoveNextREVERSE_TRIAL").addClass("SlideMoveNow");
+            }
+        });
+
+        let repeat;
+        function MoveSlidesFunction() {repeat = setInterval(Move_Slides, 8000);}
+        MoveSlidesFunction();
+        let FirstTime = 1;
+        $("#PauseKey").click(function() {
+            if (FirstTime === 1) {clearTimeout(repeat); FirstTime = 0; $("#PauseKey").attr("title", "Click to move the slides");} 
+                            else {Move_Slides(); MoveSlidesFunction(); FirstTime = 1; $("#PauseKey").attr("title", "Click to pause the slides");}
+            $(this).css({'opacity': '0', transition: "0.2s"}).delay(200).queue(function() {$(this).toggleClass("fa-pause").toggleClass("fa-play").css({'opacity': '1', transition: "0.2s"}).dequeue();});
+        });
+
+        // Main Screen Animation Stop / Start
+
+        $(window).blur(function(){if (FirstTime === 1) {clearTimeout(repeat); FirstTime = 0; $("#PauseKey").attr("title", "Click to move the slides");
+                $("#PauseKey").css({'opacity': '0', transition: "0.2s"}).delay(200).queue(function() {$(this).toggleClass("fa-pause").toggleClass("fa-play").css({'opacity': '1', transition: "0.2s"}).dequeue();});
+        }});
+        $(window).focus(function() {if (FirstTime === 0) {Move_Slides(); MoveSlidesFunction(); FirstTime = 1; $("#PauseKey").attr("title", "Click to pause the slides");
+                $("#PauseKey").css({'opacity': '0', transition: "0.2s"}).delay(200).queue(function() {$(this).toggleClass("fa-pause").toggleClass("fa-play").css({'opacity': '1', transition: "0.2s"}).dequeue();});
+        }});
+
+    </script>
+</body>
+</html>
