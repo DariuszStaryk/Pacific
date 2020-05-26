@@ -1,0 +1,316 @@
+    ■ TYPES
+        The major improvement of TS over ES6, that gives the language its name, is the typing system. For some people the lack of type checking is considered one of the benefits of using a language like JS
+        You might be a little skeptical of type checking but I'd encourage you to give it a chance. One of the great things about type checking is that
+            1. it helps when writing code because it can prevent bugs at compile time and
+            2. it helps when reading code because it clarifies your intentions
+        It's also worth noting that types are optional in TS. If we want to write some quick code or prototype a feature, we can omit types and gradually add them as the code becomes more mature
+        TS's basic types are the same ones we've been using implicitly when we write "normal" JS code: strings, numbers, booleans, etc.
+        Up until ES5, we would define variables with the var keyword, like var fullName;.
+        The new TS syntax is a natural evolution from ES5, we still use var but now we can optionally provide the variable type along with its name:
+            1 var fullName: string;
+        When declaring functions we can use types for arguments and return values:
+            1 function greetText(name: string): string {
+            2 return "Hello " + name;
+            3 }
+        In the example above we are defining a new function called greetText which takes 1 argument: name. The syntax name: string says that this function expects name to be a string
+        Our code won't compile if we call this function with anything other than a string and that's a good thing because otherwise we'd introduce a bug
+        Notice that the greetText function also has a new syntax after the parentheses: : string {. 
+        The colon indicates that we will specify the return type for this function, which in this case is a string
+        This is helpful because 1. if we accidentally return anything other, than a string in our code, the compiler will tell us that we made a mistake 
+        and 2. any other developers who want to use this function know precisely what type of object they'll be getting
+        Let's see what happens if we try to write code that doesn't conform to our declared typing:
+            1 function hello(name: string): string {
+            2 return 12;
+            3 }
+        If we try to compile it, we'll see the following error:
+            1 $ tsc compile-error.ts
+            2 compile-error.ts(2,12): error TS2322: Type 'number' is not assignable to type 'string'.
+        What happened here? We tried to return 12 which is a number, but we stated, that hello would return a string (by putting the ): string { after the argument declaration)
+        In order to correct this, we need to update the function declaration to return a number:
+            1 function hello(name: string): number {
+            2 return 12;
+            3 }
+        This is one small example, but already we can see that by using types it can save us from a lot of bugs down the road
+        So now that we know how to use types, how can we know what types are available to use ? Let's look at the list of built-in types and then we'll figure out how to create our own
+        
+        Trying it out with a REPL
+        To play with the examples in this chapter, let's install a nice little utility called TSUN³³ (TS Upgraded Node):
+            1 $ npm install -g tsun
+        Now start tsun:
+            1 $ tsun
+            2 TSUN : TS Upgraded Node
+            3 type in TS expression to evaluate
+            4 type :help for commands in repl
+            5
+            6 >
+        That little > is the prompt indicating that TSUN is ready to take in commands. In most of the examples below, you can copy and paste into this terminal and follow along
+
+    ■ BUILT-IN TYPES
+        
+        String
+        A string holds text and is declared using the string type:        ³³https://github.com/HerringtonDarkholme/TS-repl
+            1 var fullName: string = 'Nate Murray';
+        
+        Number
+        A number is any type of numeric value. In TS, all numbers are represented
+        as floating point. The type for numbers is number:
+            1 var age: number = 36;
+        
+        Boolean
+        The boolean holds either true or false as the value.
+            1 var married: boolean = true;
+        
+        Array
+        Arrays are declared with the Array type. However, because an Array is a collection, we also need to specify the type of the objects in the Array.
+        We specify the type of the items in the array with either the Array<type> or type[] notations:
+            1 var jobs: Array<string> = ['IBM', 'Microsoft', 'Google'];
+            2 var jobs: string[] = ['Apple', 'Dell', 'HP'];
+        Or similarly with a number:
+            1 var chickens: Array<number> = [1, 2, 3];
+            2 var chickens: number[] = [4, 5, 6];
+        
+        Enums
+        Enums work by naming numeric values. Np. if we wanted to have a fixed list of roles a person may have we could write this:
+            1 enum Role {Employee, Manager, Admin};
+            2 var role: Role = Role.Employee;
+        The default initial value for an enum is 0, though you can set the starting enum number like this:
+            1 enum Role {Employee = 3, Manager, Admin};
+            2 var role: Role = Role.Employee;
+        In the code above, instead of Employee being 0, Employee is 3. The value of the enum increments from there, which means Manager is 4 and Admin is 5 and we can even set individual values:
+            1 enum Role {Employee = 3, Manager = 5, Admin = 7};
+            2 var role: Role = Role.Employee;
+        You can also look up the name of a given enum by using its value:
+            1 enum Role {Employee, Manager, Admin};
+            2 console.log('Roles: ', Role[0], ',', Role[1], 'and', Role[2]);
+        
+        Any
+        any is the default type if we omit typing for a given variable. Having a variable of type any allows it to receive any kind of value:
+            1 var sth: any = 'as string';
+            2 sth = 1;
+            3 sth = [1, 2, 3];
+        Void
+        Using void means there's no type expected. This is usually in functions with no return value:
+            1 function setName(name: string): void {
+            2 this.fullName = name;
+            3 }
+        
+    ■ CLASSES
+        In JS ES5 object oriented programming was accomplished by using prototype-based objects. This model doesn't use classes, but instead relies on prototypes
+        A number of good practices have been adopted by the JS community to compensate the lack of classes. A good summary of those good practices can be found in 
+        Mozilla Developer Network's JS Guide³⁴ and you can find a good overview on the Introduction to Object-Oriented JS³⁵ page. However, in ES6 we finally have built-in classes in JS
+        To define a class we use the new class keyword and give our class a name and a body:
+            class Vehicle { }
+        Classes may have properties, methods and constructors
+        
+        a) Properties
+        Properties define data attached to an instance of a class. Np. a class named Person might have properties like first_name, last_name and age
+        Each property in a class can optionally have a type. Np. we could say that the first_name and last_name properties are strings and the age property is a number
+        The declaration for a Person class that looks like this:
+            ³⁴https://developer.mozilla.org/en-US/docs/Web/JS/Guide
+            ³⁵https://developer.mozilla.org/en-US/docs/Web/JS/Introduction_to_Object-Oriented_JS
+            1 class Person {
+            2 first_name: string;
+            3 last_name: string;
+            4 age: number;
+            5 }
+        
+        b) Methods
+        Methods are functions that run in context of an object. To call a method on an object, we 1st have to have an instance of that object
+        To instantiate a class, we use the new keyword. Use new Person() to create a new instance of the Person class, for example
+        If we wanted to add a way to greet a Person using the class above, we would write sth like:
+            class Person {
+            first_name: string;
+            last_name: string;
+            age: number;
+            greet() {
+            console.log("Hello", this.first_name);
+            }
+            }
+        Notice, that we're able to access the first_name for this Person by using the this keyword and calling this.first_name
+        When methods don't declare an explicit returning type and return a value, it's assumed, they can return anything (any type). However, in this case we are returning void, since there's no explicit return statement
+        Note that a void value is also a valid any value. In order to invoke the greet method, you would need to 1st have an instance of the Person class. Here's how we do that:
+            // declare a variable of type Person
+            var p: Person;
+            // instantiate a new Person instance
+            p = new Person();
+            // give it a first_name
+            p.first_name = 'Felipe';
+            // call the greet method
+            p.greet();
+        You can declare a variable and instantiate a class on the same line if u want:
+            1 var p: Person = new Person();
+        Say, we want to have a method on the Person class that returns a value. Np. to know the age of a Person in a number of years from now, we could write:
+            class Person {
+            first_name: string;
+            last_name: string;
+            age: number;
+            greet() {
+            console.log("Hello", this.first_name);
+            }
+            ageInYears(years: number): number {
+            return this.age + years;
+            }
+            }
+            // instantiate a new Person instance
+            var p: Person = new Person();
+            // set initial age
+            p.age = 6;
+            // how old will he be in 12 years?
+            p.ageInYears(12);
+            // -> 18
+        
+        c) Constructors
+        A constructor is a special method that is executed when a new instance of the class is being created. Usually, the constructor is where you perform any initial setup for new objects
+        Constructor methods must be named constructor. They can optionally take parameters, but they can't return any values, since they are called when the class is being instantiated 
+        (i.e. an instance of the class is being created, no other value can be returned). In order to instantiate a class we call the class constructor method by using the class name: new ClassName()
+        When a class has no constructor defined explicitly one will be created automatically:
+            1 class Vehicle {
+            2 }
+            3 var v = new Vehicle();
+        Is the same as:
+            1 class Vehicle {
+            2 constructor() {
+            3 }
+            4 }
+            5 var v = new Vehicle();
+        In TS you can have only one constructor per class. That is a departure from ES6 which allows one class to have more, than 1 constructor as long as they have a different number of parameters
+        Constructors can take parameters when we want to parameterize our new instance creation. Np. we can change Person to have a constructor that initializes our data:
+            class Person {
+            first_name: string;
+            last_name: string;
+            age: number;
+            constructor(first_name: string, last_name: string, age: number) {
+            this.first_name = first_name;
+            this.last_name = last_name;
+            this.age = age;
+            }
+            greet() {
+            console.log("Hello", this.first_name);
+            }
+            ageInYears(years: number): number {
+            return this.age + years;
+            }
+            }
+        It makes our previous example a little easier to write:
+            1 var p: Person = new Person('Felipe', 'Coury', 36);
+            2 p.greet();
+        This way the person's names and age are set for us when the object is created
+        
+        d) Inheritance
+        Another important aspect of object oriented programming is inheritance. Inheritance is a way to indicate that a class receives behavior from a parent class
+        Then we can override, modify or augment those behaviors on the new class. If u want to have a deeper understanding of how inheritance used to work in ES5, 
+        take a look at the Mozilla Developer Network article about it: Inheritance and the prototype chain³⁶.
+        TS fully supports inheritance and, unlike ES5, it's built into the core language. Inheritance is achieved through the extends keyword. To illustrate, let's say we've created a Report class:
+            class Report {
+            data: Array<string>;
+            constructor(data: Array<string>) {
+            this.data = data;
+            }
+            run() {
+            this.data.forEach(function(line) { console.log(line); });
+            }
+            }
+        This report has a property data which is an Array of strings. When we call run we loop over each element of data and print them out using console.log.forEach 
+        is a method on Array that accepts a function as an argument and calls that function for each element in the Array.
+            ³⁶https://developer.mozilla.org/en-US/docs/Web/JS/Inheritance_and_the_prototype_chain
+        This Report works by adding lines and then calling run to print out the lines:
+            1 var r: Report = new Report(['First line', 'Second line']);
+            2 r.run();
+        Running this should show:
+            1 1st line
+            2 Second line
+        Now, let's say we want to have a second report that takes some headers and some data but we still want to reuse how the Report class presents the data to the user
+        To reuse that behavior from the Report class we can use inheritance with the extends keyword:
+            class TabbedReport extends Report {
+            headers: Array<string>;
+            constructor(headers: string[], values: string[]) {
+            super(values)
+            this.headers = headers;
+            }
+            run() {
+            console.log(this.headers);
+            super.run();
+            }
+            }
+            1 var headers: string[] = ['Name'];
+            2 var data: string[] = ['Alice Green', 'Paul Pfifer', 'Louis Blakenship'];
+            3 var r: TabbedReport = new TabbedReport(headers, data)
+            4 r.run();
+        
+    ■ UTILITIES
+        ES6 and by extension TS provides a number of syntax features that make programming really enjoyable. Two important ones are:
+            • fat arrow function syntax         • template strings
+        
+        Fat Arrow Functions
+        Fat arrow => functions are a shorthand notation for writing functions. In ES5, whenever we want to use a function as an argument we have to use the function keyword along with {} braces like so:
+            1 // ES5-like example
+            2 var data = ['Alice Green', 'Paul Pfifer', 'Louis Blakenship'];
+            3 data.forEach(function(line) { console.log(line); });
+        However with the => syntax we can instead rewrite it like so:
+            1 // TS example
+            2 var data: string[] = ['Alice Green', 'Paul Pfifer', 'Louis Blakenship'];
+            3 data.forEach( (line) => console.log(line) );
+        Parentheses are optional when there's only one parameter. The => syntax can be used both as an expression:
+            1 var evens = [2,4,6,8];
+            2 var odds = evens.map(v => v + 1);
+        Or as a statement:
+            1 data.forEach( line => {
+            2 console.log(line.toUpperCase())
+            3 });
+        1 important feature of the => syntax is that it shares the same this as the surrounding code. This is important and different than what happens when u normally create a function in JS
+        Generally when you write a function in JS, that function is given its own this. Sometimes in JS we see code like this:
+            1 var nate = {
+            2 name: "Nate",
+            3 guitars: ["Gibson", "Martin", "Taylor"],
+            4 printGuitars: function() {
+            5 var self = this;
+            6 this.guitars.forEach(function(g) {
+            7 // this.name is undefined so we have to use self.name
+            8 console.log(self.name + " plays a " + g);
+            9 });
+            10 }
+            11 };
+        Because the fat arrow shares this with its surrounding code, we can instead write this:
+            1 var nate = {
+            2 name: "Nate",
+            3 guitars: ["Gibson", "Martin", "Taylor"],
+            4 printGuitars: function() {
+            5 this.guitars.forEach( (g) => {
+            6 console.log(this.name + " plays a " + g);
+            7 });
+            8 }
+            9 };
+        Arrows are a great way to cleanup your inline functions. It makes it even easier to use higher-order functions in JS
+        
+        Template Strings
+        In ES6 new template strings were introduced. The two great features of template strings are
+            1. Variables within strings (without being forced to concatenate with +) and
+            2. Multi-line strings
+        
+        Variables in strings
+        This feature is also called "string interpolation." The idea is that you can put variables right in your strings. Here's how:
+            1 var firstName = "Nate";
+            2 var lastName = "Murray";
+            3
+            4 // interpolate a string
+            5 var greeting = `Hello ${firstName} ${lastName}`;
+            6
+            7 console.log(greeting);
+        Note that to use string interpolation you must enclose your string in backticks not single / double quotes
+        
+        Multiline strings
+        Another great feature of backtick strings is multi-line strings:
+            1 var template = `
+            2 <div>
+            3 <h1>Hello</h1>
+            4 <p>This is a great website</p>
+            5 </div>
+            6 `
+            7
+            8 // do sth with `template`
+        Multiline strings are a huge help when we want to put strings in our code that are a little long, like templates
+        
+    ■ WRAPPING UP
+        There are a variety of other features in TS/ES6 such as:
+        • Interfaces        • Generics        • Importing and Exporting Modules        • Decorators        • Destructuring
+        We'll be touching on these concepts as we use them throughout the book, but for now these basics should get you started. Let's get back to Angular !
